@@ -14,8 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Moxe.EmrConnector.ClinicalData.Api\Moxe.EmrConnector.ClinicalData.Api.csproj" />
     <ProjectReference Include="..\Moxe.EmrConnector.ExampleEmr.Connector\Moxe.EmrConnector.ExampleEmr.Connector.csproj" />
-    <ProjectReference Include="..\Moxe.EmrConnector.ExampleEmr\Moxe.EmrConnector.ExampleEmr.Connector.csproj" />
-  </ItemGroup>
+
+	     <ProjectReference Include="..\Moxe.EmrConnector.ExampleEmr\Moxe.EmrConnector.ExampleEmr.Connector.csproj" />	  	       </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Startup\" />

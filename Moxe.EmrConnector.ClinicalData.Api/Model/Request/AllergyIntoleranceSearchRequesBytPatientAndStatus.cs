@@ -8,7 +8,6 @@ namespace Moxe.EmrConnector.ClinicalData.Api.Model.Request
 {
     public class AllergyIntoleranceSearchRequest : PatientRequest
     {
-
         public int PatientId { get; set; }
         public string ClinicalStatus { get; set;}
 
