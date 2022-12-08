@@ -46,6 +46,7 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
             return new List<AllergyIntolerance>();
         }
 
+
         /// <summary>
         /// Get the connection to the EHR, then use that connection to do the allergy search.
         /// </summary>
