@@ -23,11 +23,11 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
 
 
         /// <summary>
-        /// Retrieve AllergyIntolerance data using parameters identifier
+        /// It retrieves AllergyIntolerance data using parameters connection object and identifiers. 
         /// </summary>
-        /// <param name="connectionInfo"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+        /// <param name="request">It contains the request parameters for getting the allergy data</param>
+        /// <returns>It returns allergy data as bundle (collection of resources).</returns>
         public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, AllergyIntoleranceSearchRequest request)
         {
             var allergies = await _allergySearch.FindAllergies(connectionInfo, request.PatientIdentifier.IdentifierType, request.PatientIdentifier.IdentifierValue);
@@ -41,11 +41,11 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         }
 
         /// <summary>
-        /// Retrieve AllergyIntolerance data using parameter patientId
+        /// It retrieves AllergyIntolerance data using parameters connection object and patients-id.
         /// </summary>
-        /// <param name="connectionInfo"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+        /// <param name="request">It contains the request parameters for getting the allergy data</param>
+        /// <returns>It returns allergy data as bundle (collection of resources).</returns>
         public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, AllergyIntoleranceSearchRequestByPatient request)
         {
 
@@ -60,11 +60,11 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         }
 
         /// <summary>
-        /// Retrieve AllergyIntolerance data using parameter patientId, clinicalStatus
+        /// It retrieves AllergyIntolerance data using parameters connection object, patient-id and clinical-status.
         /// </summary>
-        /// <param name="connectionInfo"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+        /// <param name="request">It contains the request parameters for getting the allergy data</param>
+        /// <returns>It returns allergy data as bundle (collection of resources).</returns>
         public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, AllergyIntoleranceSearchRequestByPatientAndStatus request)
         {
             var allergies = await _allergySearch.FindAllergies(connectionInfo, request.PatientId, request.ClinicalStatus);
@@ -80,8 +80,8 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         /// <summary>
         /// Maps list of allergies to the bundle
         /// </summary>
-        /// <param name="patients"></param>
-        /// <returns></returns>
+        /// <param name="allergies"></param>
+        /// <returns>It returns bundle object</returns>
         private Task<Bundle> MapAllergies(IEnumerable<AllergyIntolerance> allergies)
         {
             var bundle = new Bundle();

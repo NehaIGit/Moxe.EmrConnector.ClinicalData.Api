@@ -20,12 +20,13 @@ public class PatientSearchConnector : IPatientSearchConnector
     }
 
     /// <summary>
-    /// Get the connection to the EHR, then use that connection to do the patient search.
+    /// Get the connection to the EHR based on authentication scheme, 
+    /// then use that connection to do the patient search using http client object.
     /// </summary>
-    /// <param name="connection"></param>
-    /// <param name="identifierType"></param>
-    /// <param name="identifierValue"></param>
-    /// <returns></returns>
+    /// <param name="connection">It contains the information to connect with EHR</param>
+    /// <param name="identifierType">This field used by the healthcare facility to uniquely identify a patient </param>
+    /// <param name="identifierValue">This field used by the healthcare facility to uniquely identify a patient </param>
+    /// <returns>It returns list of patients</returns>
     public async Task<IEnumerable<Patient>> FindPatients(ConnectionInfo connection, string identifierType, string identifierValue)
     {
         var connectionObj = _authFactory.GetConnectionObject(connection);       
@@ -45,13 +46,14 @@ public class PatientSearchConnector : IPatientSearchConnector
     }
 
     /// <summary>
-    /// Get the connection to the EHR, then use that connection to do the patient search.
+    /// Get the connection to the EHR based on authentication scheme, 
+    /// then use that connection to do the patient search using http client object.
     /// </summary>
-    /// <param name="connection"></param>
-    /// <param name="firstName"></param>
-    /// <param name="lastName"></param>
-    /// <param name="dateOfBirth"></param>
-    /// <returns></returns>
+    /// <param name="connection">It contains the information to connect with EHR</param>
+    /// <param name="firstName">This field is used as filter parameter</param>
+    /// <param name="lastName">This field is used as filter parameter</param>
+    /// <param name="dateOfBirth">This field is used as filter parameter</param>
+    /// <returns>It returns list of patients</returns>
     public async Task<IEnumerable<Patient>> FindPatients(ConnectionInfo connection, string firstName, string lastName, DateOnly dateOfBirth)
     {
         // Real code would do whatever it took to get a connection to the EMR

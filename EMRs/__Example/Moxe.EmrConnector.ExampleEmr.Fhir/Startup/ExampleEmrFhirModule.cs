@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Moxe.EmrConnector.ClinicalData.Api;
 using Moxe.EmrConnector.ClinicalData.Api.Manifest;
 using Moxe.EmrConnector.ClinicalData.Api.Startup;
 using Moxe.EmrConnector.ExampleEmr.Fhir.Manifest;

@@ -26,12 +26,13 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
             _authFactory= authFactory;
         }
         /// <summary>
-        /// Get the connection to the EHR, then use that connection to do the encounetr search.
+        /// Get the connection to the EHR bases on authentication scheme, 
+        /// then use that connection to do the encounter search using http client object.
         /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="identifierType"></param>
-        /// <param name="identifierValue"></param>
-        /// <returns></returns>
+        /// <param name="connection">It contains the information to connect with EHR</param>
+        /// <param name="identifierType">This field used by the healthcare facility to uniquely identify the encounter </param>
+        /// <param name="identifierValue">This field used by the healthcare facility to uniquely identify the encounter </param>
+        /// <returns>It returns list of encounters</returns>
         public async Task<IEnumerable<Encounter>> FindEncounters(ConnectionInfo connection, string identifierType, string identifierValue)
         {
             var connectionObj = _authFactory.GetConnectionObject(connection);
@@ -43,12 +44,13 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
             return new List<Encounter>();
         }
         /// <summary>
-        /// Get the connection to the EHR, then use that connection to do the encounter using search.
+        /// Get the connection to the EHR bases on authentication scheme, 
+        /// then use that connection to do the encounter search using http client object.
         /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="patientId"></param>
-        /// <param name="status"></param>
-        /// <returns></returns>
+        /// <param name="connection">It contains the information to connect with EHR</param>
+        /// <param name="patientId">This field used by the healthcare facility to uniquely identify a patient</param>
+        /// <param name="status"> This is the clinical status of the patient</param>
+        /// <returns>It returns list of encounters</returns>
         public async Task<IEnumerable<Encounter>> FindEncounters(ConnectionInfo connection, int patientId, string status)
         {
             var connectionObj = _authFactory.GetConnectionObject(connection);
@@ -59,6 +61,14 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
             return new List<Encounter>();
         }
 
+        /// <summary>
+        /// Get the connection to the EHR bases on authentication scheme, 
+        /// then use that connection to do the encounter search using http client object.
+        /// </summary>
+        /// <param name="connection">It contains the information to connect with EHR</param>
+        /// <param name="startDate"> This is the encounter start date</param>
+        /// <param name="EndDate"> This is the encounter end date</param>
+        /// <returns>It returns list of encounters</returns>
         public async Task<IEnumerable<Encounter>> FindEncounters(ConnectionInfo connection, DateOnly startDate, DateOnly EndDate)
         {
             var connectionObj = _authFactory.GetConnectionObject(connection);

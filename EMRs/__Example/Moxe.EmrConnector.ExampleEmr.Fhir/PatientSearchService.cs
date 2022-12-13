@@ -21,9 +21,9 @@ public class PatientSearchService : IPatientSearchByIdentifierService, IPatientS
     /// <summary>
     /// Retrieve patient data using parameters identifier
     /// </summary>
-    /// <param name="connectionInfo"></param>
-    /// <param name="request"></param>
-    /// <returns></returns>
+    /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+    /// <param name="request">It contains the request parameters for getting the patient data</param>
+    /// <returns>It returns patient data as bundle (collection of resources).</returns>
     public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, PatientSearchByIdentifierRequest request)
     {
         var patients = await _patientSearch.FindPatients(connectionInfo, request.IdentifierType, request.IdentifierValue);
@@ -39,9 +39,9 @@ public class PatientSearchService : IPatientSearchByIdentifierService, IPatientS
     /// <summary>
     /// Retrieve patient data using parameters patient demographics firstname, lastname, dateofbirth
     /// </summary>
-    /// <param name="connectionInfo"></param>
-    /// <param name="request"></param>
-    /// <returns></returns>
+    /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+    /// <param name="request">It contains the request parameters for getting the patient data</param>
+    /// <returns>It returns patient data as bundle (collection of resources).</returns>
     public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, PatientSearchByDemographicsRequest request)
     {
         var patients = await _patientSearch.FindPatients(connectionInfo, request.FirstName, request.LastName, request.DateOfBirth);
@@ -58,7 +58,7 @@ public class PatientSearchService : IPatientSearchByIdentifierService, IPatientS
     /// Maps list of patients to the bundle
     /// </summary>
     /// <param name="patients"></param>
-    /// <returns></returns>
+    /// <returns>It returns bundle object</returns>
     private Task<Bundle> MapPatients(IEnumerable<Patient> patients)
     {
         var bundle = new Bundle();

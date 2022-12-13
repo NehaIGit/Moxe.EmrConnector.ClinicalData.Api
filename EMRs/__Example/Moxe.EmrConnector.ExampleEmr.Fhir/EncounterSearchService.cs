@@ -23,11 +23,11 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         }
 
         /// <summary>
-        /// Retrieve encounter data using parameters identifier
+        /// It retrieves encounter data using parameters connection object and identifiers.
         /// </summary>
-        /// <param name="connectionInfo"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+        /// <param name="request">It contains the request parameters for getting the encounter data</param>
+        /// <returns>It returns encounter data as bundle (collection of resources).</returns>
         public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, EncountertSearchByIdentifierRequest request)
         {          
             var encounters = await _encounterSearch.FindEncounters(connectionInfo, request.IdentifierType, request.IdentifierValue);
@@ -41,11 +41,11 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         }
 
         /// <summary>
-        /// Retrieve encounter data using parameters patient id and status
+        ///  It retrieves encounter data using parameters connection object, patient-id and status.
         /// </summary>
-        /// <param name="connectionInfo"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+        /// <param name="request">It contains the request parameters for getting the encounter data</param>
+        /// <returns>It returns encounter data as bundle (collection of resources).</returns>
         public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, EncounterSearchRequestByPatientAndStatus request)
         {
             var encounters = await _encounterSearch.FindEncounters(connectionInfo, request.PatientId,request.Status);
@@ -59,11 +59,11 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         }
 
         /// <summary>
-        /// Retrieve encounter data using parameters date range - startDate and endDate
+        ///  It retrieves encounter data using parameters connection object, date range - start date and end date..
         /// </summary>
-        /// <param name="connectionInfo"></param>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="connectionInfo">It contains the information to connect with EHR</param>
+        /// <param name="request">It contains the request parameters for getting the encounter data</param>
+        /// <returns>It returns encounter data as bundle (collection of resources).</returns>
         public async Task<ResourceResponse<Bundle>> Retrieve(ConnectionInfo connectionInfo, EncounterSearchRequestByDateRange request)
         {
             var encounters = await _encounterSearch.FindEncounters(connectionInfo, request.StartDate, request.EndDate);
@@ -79,8 +79,8 @@ namespace Moxe.EmrConnector.ExampleEmr.Fhir
         /// <summary>
         /// Maps list of encounters to the bundle
         /// </summary>
-        /// <param name="patients"></param>
-        /// <returns></returns>
+        /// <param name="encounters">It is the list of encounters</param>
+        /// <returns>It returns encounter data as bundle (collection of resources).</returns>    
         private Task<Bundle> MapEncounters(IEnumerable<Encounter> encounters)
         {
             var bundle = new Bundle();

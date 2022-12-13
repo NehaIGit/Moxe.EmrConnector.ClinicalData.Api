@@ -30,12 +30,13 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
         }
 
         /// <summary>
-        /// Get the connection to the EHR, then use that connection to do the allergy search.
+        /// Get the connection to the EHR bases on authentication scheme, 
+        /// then use that connection to do the allergy search using http client object.
         /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="identifierType"></param>
-        /// <param name="identifierValue"></param>
-        /// <returns></returns>
+        /// <param name="connection">It contains the information to connect with EHR</param>
+        /// <param name="identifierType">This field used by the healthcare facility to uniquely identify the allergy </param>
+        /// <param name="identifierValue">This field used by the healthcare facility to uniquely identify the  allergy </param>
+        /// <returns>It returns list of allergies</returns>
         public async Task<IEnumerable<AllergyIntolerance>> FindAllergies(ConnectionInfo connection, string identifierType, string identifierValue)
         {
             var connectionObj = _authFactory.GetConnectionObject(connection);
@@ -47,12 +48,12 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
         }
 
         /// <summary>
-        /// Get the connection to the EHR, then use that connection to do the allergy search.
+        /// Get the connection to the EHR bases on authentication scheme, 
+        /// then use that connection to do the allergy search using http client object.
         /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="patientId"></param>
-        /// <returns></returns>
-
+        /// <param name="connection">It contains the information to connect with EHR</param>
+        /// <param name="patientId">This is the primary identifier to collect the patient data</param>
+        /// <returns>It returns list of allergies</returns>
         public async Task<IEnumerable<AllergyIntolerance>> FindAllergies(ConnectionInfo connection, int patientId)
         {
             var connectionObj = _authFactory.GetConnectionObject(connection);
@@ -63,14 +64,14 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
             return new List<AllergyIntolerance>();
         }
 
-
         /// <summary>
-        /// Get the connection to the EHR, then use that connection to do the allergy search.
+        /// Get the connection to the EHR bases on authentication scheme, 
+        /// then use that connection to do the allergy search using http client object.
         /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="patientId"></param>
-        /// <param name="clinicalStatus"></param>
-        /// <returns></returns>
+        /// <param name="connection">It contains the information to connect with EHR></param>
+        /// <param name="patientId">This is the primary identifier to collect the patient data</param>
+        /// <param name="clinicalStatus">This is the clinical status of the patient.</param>
+        /// <returns>It returns list of allergies</returns>
         public async Task<IEnumerable<AllergyIntolerance>> FindAllergies(ConnectionInfo connection, int patientId, string clinicalStatus)
         {
             var connectionObj = _authFactory.GetConnectionObject(connection);
@@ -81,20 +82,5 @@ namespace Moxe.EmrConnector.ExampleEmr.Connector.Connector
             return new List<AllergyIntolerance>();
         }
 
-        /// <summary>
-        /// Get the connection to the EHR, then use that connection to do the allergy search.
-        /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="allergyIntolerance"></param>
-        /// <returns></returns>
-        public async Task<IEnumerable<AllergyIntolerance>> FindAllergies(ConnectionInfo connection, AllergyIntoleranceSearchRequest allergyIntolerance)
-        {
-            var connectionObj = _authFactory.GetConnectionObject(connection);
-            var httpClient = connectionObj.GetClient(connection);
-            var response = await httpClient.GetAsync("https://example.moxehealth.com/some/api");
-            response.EnsureSuccessStatusCode();
-            var data = await response.Content.ReadAsStringAsync();
-            return new List<AllergyIntolerance>();
-        }
     }
 }

@@ -55,10 +55,18 @@ public interface IAllergyIntoleranceSearchByIdentifierService
     : IFhirResourceService<AllergyIntoleranceSearchRequest, Hl7.Fhir.Model.Bundle>
 { }
 
+/// <summary>
+/// Returns a <see cref="Hl7.Fhir.Model.Bundle"/>
+/// containing <see cref="Hl7.Fhir.Model.AllergyIntolerance"/> resources
+/// </summary>
 public interface IAllergyIntoleranceSearchByPatient
     : IFhirResourceService<AllergyIntoleranceSearchRequestByPatient, Hl7.Fhir.Model.Bundle>
 { }
 
+/// <summary>
+/// Returns a <see cref="Hl7.Fhir.Model.Bundle"/>
+/// containing <see cref="Hl7.Fhir.Model.AllergyIntolerance"/> resources
+/// </summary>
 public interface IAllergyIntoleranceSearchByPatientAndStatus
     : IFhirResourceService<AllergyIntoleranceSearchRequestByPatientAndStatus, Hl7.Fhir.Model.Bundle>
 { }
